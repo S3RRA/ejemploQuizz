@@ -17,8 +17,9 @@
                 left: 435px;
                 top:330px;
                 color:white;
-            }       
+            }    
             legend{color:white;}
+            input{color:black;}
             #boton1,#boton2,#boton3{color:black;}
             #boton3{
                 position:absolute;
@@ -52,7 +53,7 @@
                 <br>
                 <br>
                 <input type="reset" id="boton2" class="btn btn-outline-warning">
-                <input type="submit" id="boton1" class="btn btn-outline-success" onchange="">
+                <input type="button" id="boton1" class="btn btn-outline-success" value="Enviar" onClick="location.href='Menu.php'">
  
             </form>
             <input type="button" id="boton3" value="Regístrate" class="btn btn-info" onClick="location.href='nuevoUsuario.php'">

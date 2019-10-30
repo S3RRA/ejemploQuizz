@@ -41,6 +41,9 @@ and open the template in the editor.
                 background-size: cover;
             }
         </style>
+        
+    </head>
+    <body>
         <?php
             include('./funciones.php');
             $mysqli = conectaBBDD();
@@ -73,10 +76,18 @@ and open the template in the editor.
             $r2 = rand(3,6); while ($r2 == $r1){$r2 = rand(3,6);}
             $r3 = rand(3,6); while ($r3 == $r1 || $r3 == $r2){$r3 = rand(3,6);}
             $r4 = rand(3,6); while ($r4 == $r1 || $r4 == $r2 || $r4 == $r3){$r4 = rand(3,6);}
+            $resultado = $listaPreguntas[$preguntaElegida][7];
           
         ?>
-    </head>
-    <body>
+        <script>
+            function chequea(opcion){
+                var correcta = <?php echo $resultado;?>
+                
+                if(opcion == correcta){
+                    $('#'+opcion).addClass('btn btn-success');
+                }
+            }
+        </script>
         <div class="alert alert-warning" role="alert">
             Buena suerte!
         </div>
@@ -86,51 +97,39 @@ and open the template in the editor.
             <img src="images/vida.png" width='30'>
         </div>
         <img src='images/quizzplaneta.jpg' width='250' id="logo">
+        <?php echo $resultado;?>
         <div id="quizz">
             <legend align="center">
                 <b><?php echo $listaPreguntas[$preguntaElegida][2];?></b>
             </legend>
             <br><br>
             <div align="center">
-                <button id="1" onclick="chequea(this.id)">
+                <button class="btn btn-info" id="1" onclick="chequea(this.id);">
                     <?php echo $listaPreguntas[$preguntaElegida][$r1];?>
                 </button>
             </div>
             <br><br>
             <div align="center">
-                <button id="2" onclick="chequea(this.id)">
+                <button class="btn btn-info" id="2" onclick="chequea(this.id);">
                     <?php echo $listaPreguntas[$preguntaElegida][$r2];?>
                 </button>
             </div>
             <br><br>
             <div align="center">
-                <button id="3" onclick="chequea(this.id)">
+                <button class="btn btn-info" id="3" onclick="chequea(this.id);">
                     <?php echo $listaPreguntas[$preguntaElegida][$r3];?>
                 </button>
             </div>
             <br><br>
             <div align="center">
-                <button id="4" onclick="chequea(this.id)">
+                <button class="btn btn-info" id="4" onclick="chequea(this.id);">
                     <?php echo $listaPreguntas[$preguntaElegida][$r4];?>
                 </button>
             </div>
             <br><br>
         </div>
-        <script src="js/jquery-ui.min.js" type="text/javascript"></script>
-        <script src="js/bootstrap.min.js" type="text/javascript"></script>
-        <script>
-            var correcta = '<?php echo $listaPreguntas[$i][7];?>';
-            function chequea(){
-                if(this.id===correcta){
-                    $(this.id).addClass('btn btn-success');
-                } else if (2===correcta){
-                    $('#respuesta2').addClass('btn btn-success');                 
-                } else if (3===correcta){
-                    $('#respuesta3').addClass('btn btn-success');                 
-                } else if (4===correcta){
-                    $('#respuesta4').addClass('btn btn-success');
-                }
-            }
-        </script>
+        <script src="js/jquery-1.12.0.min.js"></script>
+        <script src="js/bootstrap.min.js"></script>
+        
     </body>
 </html>
