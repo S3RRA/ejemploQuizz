@@ -92,27 +92,27 @@ and open the template in the editor.
             </legend>
             <br><br>
             <div align="center">
-                <button id="1" onclick="chequea()">
+                <button id="1" onclick="chequea(this.id)">
                     <?php echo $listaPreguntas[$preguntaElegida][$r1];?>
                 </button>
             </div>
             <br><br>
             <div align="center">
-                <input type="button" id="2" onclick="chequea()">
+                <button id="2" onclick="chequea(this.id)">
                     <?php echo $listaPreguntas[$preguntaElegida][$r2];?>
-                </input>
+                </button>
             </div>
             <br><br>
             <div align="center">
-                <input type="button" id="3" onclick="chequea()">
+                <button id="3" onclick="chequea(this.id)">
                     <?php echo $listaPreguntas[$preguntaElegida][$r3];?>
-                </input>
+                </button>
             </div>
             <br><br>
             <div align="center">
-                <input type="button" id="3" onclick="chequea()">
+                <button id="4" onclick="chequea(this.id)">
                     <?php echo $listaPreguntas[$preguntaElegida][$r4];?>
-                </input>
+                </button>
             </div>
             <br><br>
         </div>
@@ -121,13 +121,13 @@ and open the template in the editor.
         <script>
             var correcta = '<?php echo $listaPreguntas[$i][7];?>';
             function chequea(){
-                if(1==correcta){
-                    $('#respuesta1').addClass('btn btn-success');
-                } else if (2==correcta){
+                if(this.id===correcta){
+                    $(this.id).addClass('btn btn-success');
+                } else if (2===correcta){
                     $('#respuesta2').addClass('btn btn-success');                 
-                } else if (3==correcta){
+                } else if (3===correcta){
                     $('#respuesta3').addClass('btn btn-success');                 
-                } else if (4==correcta){
+                } else if (4===correcta){
                     $('#respuesta4').addClass('btn btn-success');
                 }
             }
