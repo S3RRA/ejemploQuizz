@@ -10,7 +10,7 @@
         <?php
             include('./funciones.php');
             $mysqli = conectaBBDD();
-        
+            
             $consulta = $mysqli -> query("SELECT * FROM preguntas ;");
             $num_filas = $consulta -> num_rows;
             $listaPreguntas = array();

@@ -5,14 +5,13 @@
         <title>Menú del juego</title>
         <link rel="icon" type="image/png" href="images/planeta.jpg">
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <link rel="icon" type="image/png" href="images/planeta.jpg">
         <style>
-            legend{
+            legend,h3{
                 color:white;
             }
-            #boton{
-                float:right;               
-            }
-            #opcion1{
+           
+            .opcion1{
                 height: 33%;
                 width:33%;
                 position:absolute;
@@ -21,8 +20,9 @@
                 background-color:orange;
                 border:solid;
                 border-radius: 5px;
+                border-color: #fff;
             }
-            #opcion2{
+            .opcion2{
                 height: 33%;
                 width: 33%;
                 position: absolute;
@@ -31,17 +31,18 @@
                 background-color: green;
                 border:solid;
                 border-radius: 5px;
+                border-color: #fff;
             }
             #logo{
                 position:absolute;
-                left:550px;
-                top:150px;
+                left:507px;
+                top:200px;
             }
-            #boton3, #boton4{
+            #boton, #boton3, #boton4{
                 float:right;
                 border-radius: 5px;
             }
-            #opcion3{
+            .opcion3{
                 height:25%;
                 width:45%;
                 position: absolute;
@@ -50,63 +51,68 @@
                 background-color: #1b6d85;
                 border:solid;
                 border-radius: 5px;
+                border-color: #fff;
             }
-           
+            body{
+                background-image: url('images/espacio2.gif');
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
         </style>
     </head>
     <body>
-       
+        
+        <script src="js/jquery-3.4.1.min.js" type="text/javascript"></script>
+        <script src="js/bootstrap.min.js" type="text/javascript"></script>
+        
         <h3 align="center">ELIGE UN MODO DE JUEGO</h3>
        
-        <div width="33%" id = "opcion1">
+        <div width="33%" class = "opcion1" id="opcion1">
             <legend>
                 ELECCIÓN POR TEMAS
             </legend>
             <p>
-                Esta opción consiste en la elección del tema del que deseas que se realicen las preguntas. Utiliza el dropdown y selecciona que tema quieres:
+                Esta opción consiste en la elección del tema del que deseas que se realicen las preguntas. Contarás con tres vidas, pero si puedes acertar cinco preguntas seguidas, recibirás otra vida extra.<br> <b>¿A QUE ESTÁS ESPERANDO?</b>
             </p>
             <br><br<br>
             <div class="dropdown">
-                <button id="boton" class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  TEMAS
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a class="dropdown-item" href="#">Historia</a>
-                    <a class="dropdown-item" href="#">Economía</a>
-                    <a class="dropdown-item" href="#">Lengua y literatura</a>
-                    <a class="dropdown-item" href="#">Filosofía</a>
-                    <a class="dropdown-item" href="#">Inglés y francés</a>
-                </div>
+                <select class="form-control" id="exampleFormControlSelect2" onchange="eligeTema(this.value);">
+                    <option>TEMAS</option>
+                    <option value="Lengua">LENGUA</option>
+                    <option value="Historia">HISTORIA</option>
+                    <option value="Ingles">INGLÉS</option>
+                    <option value="Filosofia">FILOSOFÍA</option>
+                    <option value="Economia">ECONOMÍA</option>
+                </select>
             </div>
         </div> 
-        
-        <div width="33%" id = "opcion2">
+        <script>
+            function eligeTema(seleccion){
+                location.href="Juego.php?tema=" + seleccion;
+            }
+        </script>
+        <div width="33%" class = "opcion2">
             <legend>
                 ALEATORIO
             </legend>
             <p>
-                Este modo de juego es <b>solo para expertos</b> mezclando todos los temas.
+                Este modo de juego es <b>solo para expertos</b> mezclando todos los temas que tenemos. <br> ¿Crees que tienes lo que hay que tener? <br> <b>¡DEMUESTRALO!</b>
             </p>
             <br><br<br>
-            <button id="boton3">Iniciar</button>
+            <button id="boton3" onclick="location.href='Juego.php'">Iniciar</button>
         </div> 
-        <img id="logo" src="images/planeta.jpg">
-        <div id="opcion3">
+        <img id="logo" src="images/quizzplaneta.jpg" width="350px">
+        <div class="opcion3">
             <legend>
                 MODO RETO
             </legend>
             <p>
-                Envía un reto a tus amigos para ver quien obtiene mayor puntuación.
+                Envía un reto a tus amigos para ver quien obtiene mayor puntuación. <br> ¿Crees que podrás vencer a tus amigos? <br> <b>¡QUE COMIENCE LA BATALLA!</b>
             </p>
             <button id="boton4">
                 Iniciar
             </button>
         </div>
-        <script src="js/jquery-3.4.1.min.js" type="text/javascript"></script>
-        <script src="js/popper.min.js" type="text/javascript"></script>
-        <script src="js/bootstrap.min.js" type="text/javascript"></script>
-        <?php
-            
-        ?>
+        
     </body>
 </html>
