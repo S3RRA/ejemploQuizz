@@ -11,16 +11,16 @@ and open the template in the editor.
     </head>
     <body>
     <?php
-            include('./funciones.php');
-            $mysqli = conectaBBDD();
+        include('./funciones.php');
+        $mysqli = conectaBBDD();
             
-$nombre = $_POST['nombre'];
-$alias = $_POST['alias'];
-$email = $_POST['email'];
-$contraseña = $_POST['contraseña'];
+        $nombre = $_POST['nombre'];
+        $alias = $_POST['alias'];
+        $email = $_POST['email'];
+        $contraseña = $_POST['contraseña'];
 
- $consulta = $mysqli -> query("INSERT INTO usuarios(alias,contraseña,email,nombre) VALUES ('$alias','$contraseña','$email','$nombre')");
-?>
-</body>
+         $consulta = $mysqli -> query("INSERT INTO usuarios(alias,contraseña,email,nombre) VALUES ('$alias','$contraseña','$email','$nombre')");
+    ?>
+    </body>
 
 </html>

@@ -11,7 +11,7 @@ and open the template in the editor.
         <link rel="icon" type="image/png" href="images/planeta.jpg">
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <style>
-            #respuesta1,#respuesta2,#respuesta3,#respuesta4{align:center;width:100%;}
+            #1,#2,#3,#4{align:center;width:100%;}
             #vidas,#quizz{
                 background-color:#fff;
                 border:solid;
@@ -26,11 +26,12 @@ and open the template in the editor.
             #logo{
                 position:absolute;
                 left:520px;
+                top:60px;
             }
             #quizz{
                 position:absolute;
                 left:350px;
-                top:220px;
+                top:200px;
                 border:solid;
                 border-radius: 5px;
                 width:45%;
@@ -40,6 +41,14 @@ and open the template in the editor.
                 background-repeat: no-repeat;
                 background-size: cover;
             }
+            #cuentaAtras{
+                display:flex;
+                position:absolute;
+                color:white;
+                top:60px;
+                right:175px;
+            }
+            #prueba{color:white;}
         </style>
         
     </head>
@@ -50,11 +59,12 @@ and open the template in the editor.
             
             if(isset($_GET['tema'])){
                 $t = $_GET['tema'];
+                $consulta = $mysqli -> query("SELECT * FROM preguntas WHERE tema = '$t';");
             } else {
-                $t = '*';
+                $consulta = $mysqli -> query("SELECT * FROM preguntas;");
             }
             
-            $consulta = $mysqli -> query("SELECT * FROM preguntas WHERE tema = '$t';");
+            
             $num_filas = $consulta -> num_rows;
             $listaPreguntas = array();
             
@@ -77,53 +87,99 @@ and open the template in the editor.
             $r3 = rand(3,6); while ($r3 == $r1 || $r3 == $r2){$r3 = rand(3,6);}
             $r4 = rand(3,6); while ($r4 == $r1 || $r4 == $r2 || $r4 == $r3){$r4 = rand(3,6);}
             $resultado = $listaPreguntas[$preguntaElegida][7];
-          
+         
+            
+        
         ?>
         <script>
+            
             function chequea(opcion){
                 var correcta = <?php echo $resultado;?>
-                
                 if(opcion == correcta){
-                    $('#'+opcion).addClass('btn btn-success');
+                    $('#'+opcion).removeClass('btn btn-info').addClass('btn btn-success');
+                    //puntos += 1;
+                    location.reload();
+                } else {
+                    $('#'+opcion).removeClass('btn btn-info').addClass('btn btn-danger');       
                 }
             }
+            //var puntos = 0;
+            /*function vidas(){
+                
+            }*/
+            /*
+              $('#vida3').css({
+                            'display':'none'
+                        });
+            
+             */
+            
+            /*
+            function ponerTiempo{
+                document.cookie = 'tiempo: '+totalTime+'; expires = Fri,19 Jun 2020 21:10:59 UTC; path=/';
+            }
+            //CUENTA ATRÁS
+            var totalTime = parseInt (window.getCookie('tiempo'));
+            if (isNaN(totalTime)){
+                totalTime=60;
+            }
+            function tiempo{
+                document.getElementById('countdown').innerHTML = totalTime;
+                if(totalTime = 0){
+                    location.href="Juego.php";
+                    deleteCookie('tiempo');
+                    deleteCookie('vida');
+                }else{
+                    totalTime-=1;
+                    setTimeout('updateClock()',1000);
+                    setCookie('tiempo');
+                }
+            }
+            */
+             
+            
         </script>
         <div class="alert alert-warning" role="alert">
             Buena suerte!
         </div>
-        <div id="vidas">
-            <img src="images/vida.png" width="30">
-            <img src="images/vida.png" width='30'>
-            <img src="images/vida.png" width='30'>
+        <div id="prueba">
+            <?php echo $resultado?>
         </div>
+        <!--<button id="countdown" class="btn btn-info"></button>-->
+        <div id="vidas">
+            <img id="vida1" src="images/vida.png" width="30">
+            <img id="vida2" src="images/vida.png" width='30'>
+            <img id="vida3" src="images/vida.png" width='30'>
+        </div>
+       <!-- <div id="puntos">PUNTUACIÓN: </div>-->
+        <span id="countdown"></span>
         <img src='images/quizzplaneta.jpg' width='250' id="logo">
-        <?php echo $resultado;?>
         <div id="quizz">
             <legend align="center">
                 <b><?php echo $listaPreguntas[$preguntaElegida][2];?></b>
             </legend>
             <br><br>
-            <div align="center">
+            <div align="center"> 
                 <button class="btn btn-info" id="1" onclick="chequea(this.id);">
-                    <?php echo $listaPreguntas[$preguntaElegida][$r1];?>
+                    <?php echo $listaPreguntas[$preguntaElegida][3];?>
                 </button>
             </div>
             <br><br>
             <div align="center">
                 <button class="btn btn-info" id="2" onclick="chequea(this.id);">
-                    <?php echo $listaPreguntas[$preguntaElegida][$r2];?>
+                    <?php echo $listaPreguntas[$preguntaElegida][4];?>
                 </button>
             </div>
             <br><br>
             <div align="center">
                 <button class="btn btn-info" id="3" onclick="chequea(this.id);">
-                    <?php echo $listaPreguntas[$preguntaElegida][$r3];?>
+                    <?php echo $listaPreguntas[$preguntaElegida][5];?>
                 </button>
             </div>
             <br><br>
             <div align="center">
                 <button class="btn btn-info" id="4" onclick="chequea(this.id);">
-                    <?php echo $listaPreguntas[$preguntaElegida][$r4];?>
+                    <?php echo $listaPreguntas[$preguntaElegida][6];?>
                 </button>
             </div>
             <br><br>

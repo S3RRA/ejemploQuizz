@@ -58,6 +58,9 @@
                 background-repeat: no-repeat;
                 background-size: cover;
             }
+            option{
+                class: btn btn-info;
+            }
         </style>
     </head>
     <body>
@@ -65,7 +68,7 @@
         <script src="js/jquery-3.4.1.min.js" type="text/javascript"></script>
         <script src="js/bootstrap.min.js" type="text/javascript"></script>
         
-        <h3 align="center">ELIGE UN MODO DE JUEGO</h3>
+        <h3 align="center"><u>ELIGE UN MODO DE JUEGO</u></h3>
        
         <div width="33%" class = "opcion1" id="opcion1">
             <legend>

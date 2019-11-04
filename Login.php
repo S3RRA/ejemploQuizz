@@ -40,13 +40,13 @@
         </div>
         <div align="center" border="solid" border-width="1px" border-radius="7px">
             <img src="images/quizzplaneta.jpg" id="planeta">       
-            <form method="post" action="" id="casilla">
+            <form method="post" action="datosLogin.php" id="casilla">
                 <legend>DATOS PERSONALES:</legend>
                 <br>
-                Usuario: <input type="text" width="43" name="user" required outofocus>
+                 <input type="text" width="43" name="user" required outofocus placeholder="Usuario">
                 <br>
                 <br>
-                Contraseña: <input type="password" width="40" name="pass" required autofocus>
+                 <input type="password" width="40" name="pass" required autofocus placeholder="Contraseña">
                 <br>
                 <br>
                 <input type="checkbox" name="Recordar"> Recordar usuario y contraseña
@@ -58,26 +58,9 @@
             </form>
             <input type="button" id="boton3" value="Regístrate" class="btn btn-info" onClick="location.href='nuevoUsuario.php'">
         </div>
-         <?php       
-          /*  include('./funciones.php');
-            $mysqli = conectaBBDD();
-            
-            $user = $_POST['user'];
-            $pass = $_POST['pass'];
-
-            $consulta = $mysqli -> query("SELECT * FROM usuarios WHERE alias = '$user' AND pass = '$pass';"); */       
-        ?>
+  
         <script src="js/jquery-ui.min.js" type="text/javascript"></script>
         <script src="js/bootstrap.min.js" type="text/javascript"></script> 
-        <script>
-            function comprueba{
-                var consulta = '<?php echo $consulta;?>';
-                if(consulta==true){
-                   location.href='Menu.php';
-                } else {
-                    brake;
-                }
-            }
-        </script>
+
     </body>
 </html>

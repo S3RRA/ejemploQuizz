@@ -13,10 +13,19 @@ and open the template in the editor.
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         
         <style>
-            input{
+            label{
+                display: inline-block;
+                float: left;
+                clear: left;
+                width: 50px;
+                text-align: right;
+            }
+            #k{
                 color:black;
                 size:30;
-            }
+                width:400px;
+                display: inline-block;               
+            } #r{color:black;width:100px;display:inline-block}
             #a{
  
                 border-radius: 5px;
@@ -26,6 +35,15 @@ and open the template in the editor.
                 
                 border-radius: 5px;
                 width: 400px;  
+            }
+            #centro{
+                position:absolute;
+                left:500px;
+            }
+            #butuones{
+                position:absolute;
+                top:510px;
+                left:500px
             }
             body {
             /* Ubicación de la imagen */
@@ -37,34 +55,33 @@ and open the template in the editor.
         </style>
         <title>Crear Usuario</title>
     </head>
-   <body>
-       <font size="3" color="white" face="Comic Sans MS,arial">
+    <body>
+        <font size="3" color="white" face="Comic Sans MS,arial">
       
-        <div align="center">
-           
+        <div align="center">           
             <br>
             <img id="b" src="images/quizzplaneta.jpg">
         </div>
-       <br>
-       <br>
-       <div align="center">
-       <form id="a" action="datosFormularioNuevo.php" method="post" >
-            <br>
-            
-  <p><u><strong>Nombre: <input type="text"  name="nombre" size="30"required=""></strong></u></p>
-  <br>
-  <p><u><strong>Alias:  <input type="text"  name="alias" size="30"required=""></strong></u></p>
-  <br>
-  <p><u><strong>Contraseña:  <input type="password"  name="contraseña" size="30"required=""></strong></u></p>
-  <br>
-  <p><u><strong>Email:  <input type="text"  name="email" size="30" required=""></strong></u></p>
-   <br>
-  <p>
-    <input type="submit" name="enviar" value="Enviar" size="30">
-    <input type="reset" name="borrar" value="Borrar" size="30">
-     </p>
-</form>
-   </div>
-      
+        <br>
+        <br>
+        <div align="center">
+            <form id="a" action="datosFormularioNuevo.php" method="post" >
+                <br>
+                <div id="centro">       
+                    <p><u><strong><label><input id="k" type="text"  name="nombre" size="30"required="" placeholder="Nombre"></label></strong></u></p>
+                    <br>
+                    <p><u><strong><label><input id="k" type="text"  name="alias" size="30"required="" placeholder="Usuario"></label></strong></u></p>
+                    <br>
+                    <p><u><strong><label><input id="k" type="password"  name="contraseña" size="30"required="" placeholder="Contraseña"></label></strong></u></p>
+                    <br>
+                    <p><u><strong><label><input id="k" type="text"  name="email" size="30" required="" placeholder="Correo electrónico"></label></strong></u></p>
+                    <br>
+                </div>  
+                <p id="butuones">            
+                    <input id="r" type="submit" name="enviar" value="Enviar" size="30">
+                    <input id="r" type="reset" name="borrar" value="Borrar" size="30">
+                </p>
+            </form>
+        </div>       
     </body>
 </html>
