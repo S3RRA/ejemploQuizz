@@ -1,18 +1,27 @@
 <?php
-require 'funciones.php';
+include 'funciones.php';
     session_start();
     
     $usuario = $_POST['user'];
     $password = $_POST['pass'];
     
-    $sql = "SELECT COUNT(*) FROM usuarios WHERE alias = '$usuario' AND contraseña = '$password'";
+    $result = "SELECT COUNT(*) FROM usuarios WHERE alias = '$usuario' AND contraseña = '$password'";
        
-    $consulta = mysqli_query($conexion_mysql, $sql);
-    $array = mysqli_fetch_array($consulta);
+    $row = mysqli_fetch_assoc($result);
     
-    if($array['contar']=0){
-        $_SESSION['username'] = $usuario;
-        header("location: ../Menu.php");
+    $hash = $row['contraseña'];
+    
+    if (password_verify($_POST['contraseña'], $hash)) {	
+				
+        $_SESSION['loggedin'] = true;
+        $_SESSION['alias'] = $row['alias'];
+        $_SESSION['start'] = time();
+        $_SESSION['expire'] = $_SESSION['start'] + (1 * 60) ;						
+				
+        echo "<a href=Menu.php></a>";	
+			
     } else {
-        echo "USUARIO O CONTRASEÑA INCORRECTOS";
+        
+        echo "<div class='alert alert-danger mt-4' role='alert'>Email or Password are incorrects!
+        <p><a href='login.html'><strong>Please try again!</strong></a></p></div>";			
     }

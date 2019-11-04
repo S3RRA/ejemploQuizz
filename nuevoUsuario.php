@@ -25,25 +25,28 @@ and open the template in the editor.
                 size:30;
                 width:400px;
                 display: inline-block;               
-            } #r{color:black;width:100px;display:inline-block}
+            } 
+            #r{color:black;width:100px;display:inline-block}
             #a{
  
                 border-radius: 5px;
                 width: 600px;   
             } 
             #b{
-                
+                position:absolute;
+                right: 465px;
                 border-radius: 5px;
                 width: 400px;  
             }
             #centro{
                 position:absolute;
                 left:500px;
+                top:250px;
             }
             #butuones{
                 position:absolute;
-                top:510px;
-                left:500px
+                top:450px;
+                left:590px;
             }
             body {
             /* Ubicación de la imagen */
@@ -78,8 +81,8 @@ and open the template in the editor.
                     <br>
                 </div>  
                 <p id="butuones">            
-                    <input id="r" type="submit" name="enviar" value="Enviar" size="30">
-                    <input id="r" type="reset" name="borrar" value="Borrar" size="30">
+                    <input id="r" type="submit" name="enviar" value="Enviar" size="30" class="btn btn-success">
+                    <input id="r" type="reset" name="borrar" value="Borrar" size="30" class="btn btn-danger">
                 </p>
             </form>
         </div>       

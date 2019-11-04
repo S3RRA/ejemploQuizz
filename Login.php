@@ -53,7 +53,7 @@
                 <br>
                 <br>
                 <input type="reset" id="boton2" class="btn btn-outline-warning">
-                <input type="button" id="boton1" class="btn btn-outline-success" value="Enviar" onClick="location.href='Menu.php'">
+                <button type="submit" id="boton1" class="btn btn-outline-success">Enviar</button>
  
             </form>
             <input type="button" id="boton3" value="Regístrate" class="btn btn-info" onClick="location.href='nuevoUsuario.php'">

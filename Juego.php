@@ -11,12 +11,17 @@ and open the template in the editor.
         <link rel="icon" type="image/png" href="images/planeta.jpg">
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <style>
-            #1,#2,#3,#4{align:center;width:100%;}
-            #vidas,#quizz{
+            #1,#2,#3,#4{align:center;}
+            #vidas,#quizz,#puntos{
                 background-color:#fff;
                 border:solid;
                 border-radius: 5px;
                 border-color:#fff;
+            }
+            #puntos{
+                position:absolute;
+                top:60px;
+                right:175px;
             }
             #vidas{
                 position:absolute;
@@ -41,16 +46,8 @@ and open the template in the editor.
                 background-repeat: no-repeat;
                 background-size: cover;
             }
-            #cuentaAtras{
-                display:flex;
-                position:absolute;
-                color:white;
-                top:60px;
-                right:175px;
-            }
             #prueba{color:white;}
-        </style>
-        
+        </style>        
     </head>
     <body>
         <?php
@@ -90,56 +87,8 @@ and open the template in the editor.
          
             
         
-        ?>
-        <script>
-            
-            function chequea(opcion){
-                var correcta = <?php echo $resultado;?>
-                if(opcion == correcta){
-                    $('#'+opcion).removeClass('btn btn-info').addClass('btn btn-success');
-                    //puntos += 1;
-                    location.reload();
-                } else {
-                    $('#'+opcion).removeClass('btn btn-info').addClass('btn btn-danger');       
-                }
-            }
-            //var puntos = 0;
-            /*function vidas(){
-                
-            }*/
-            /*
-              $('#vida3').css({
-                            'display':'none'
-                        });
-            
-             */
-            
-            /*
-            function ponerTiempo{
-                document.cookie = 'tiempo: '+totalTime+'; expires = Fri,19 Jun 2020 21:10:59 UTC; path=/';
-            }
-            //CUENTA ATRÁS
-            var totalTime = parseInt (window.getCookie('tiempo'));
-            if (isNaN(totalTime)){
-                totalTime=60;
-            }
-            function tiempo{
-                document.getElementById('countdown').innerHTML = totalTime;
-                if(totalTime = 0){
-                    location.href="Juego.php";
-                    deleteCookie('tiempo');
-                    deleteCookie('vida');
-                }else{
-                    totalTime-=1;
-                    setTimeout('updateClock()',1000);
-                    setCookie('tiempo');
-                }
-            }
-            */
-             
-            
-        </script>
-        <div class="alert alert-warning" role="alert">
+        ?>    
+        <div id="alert" class="alert alert-warning" role="alert">
             Buena suerte!
         </div>
         <div id="prueba">
@@ -151,8 +100,7 @@ and open the template in the editor.
             <img id="vida2" src="images/vida.png" width='30'>
             <img id="vida3" src="images/vida.png" width='30'>
         </div>
-       <!-- <div id="puntos">PUNTUACIÓN: </div>-->
-        <span id="countdown"></span>
+        <div id="puntos"><b>PUNTUACIÓN: 0</b></div>
         <img src='images/quizzplaneta.jpg' width='250' id="logo">
         <div id="quizz">
             <legend align="center">
@@ -184,8 +132,54 @@ and open the template in the editor.
             </div>
             <br><br>
         </div>
+        <script>
+            var puntuacion = 0;
+            
+            function chequea(opcion){
+                var correcta = '<?php echo $resultado;?>';
+                if(opcion == correcta){
+                    puntuacion = puntuacion + 100;
+                    document.getElementById("puntos").innerHTML = "<b>PUNTUACION: "+puntuacion+"</b>";
+                    $('#'+opcion).removeClass('btn btn-info').addClass('btn btn-success');
+                    document.title = "RESPUESTA CORRECTA!";
+                    document.getElementById("alert").innerHTML = "¡RESPUESTA CORRECTA!";
+                    $('#alert').removeClass('alert alert-warning').addClass('alert alert-success');
+                    setTimeout(
+                        function(){
+                            location.reload();
+                        },1000
+                    );                    
+                } else {
+                    $('#'+opcion).removeClass('btn btn-info').addClass('btn btn-danger');  
+                    document.title = "RESPUESTA ERRÓNEA!";
+                    document.getElementById("alert").innerHTML = "¡RESPUESTA ERRÓNEA!";
+                    $('#alert').removeClass('alert alert-warning').addClass('alert alert-danger');
+                    restaVidas();
+                }
+            }           
+            function restaVidas(){
+                var vidas = 3;
+                var imagen1 = $('#vida1').css('display');
+                var imagen2 = $('#vida2').css('display');
+                if(imagen1 == 'none' & imagen2 == 'none'){
+                    $('#vida3').css({'display':'none'});
+                    vidas = vidas-1;
+                }
+                else if(imagen1 == 'none'){
+                    $('#vida2').css({'display':'none'});
+                    vidas = vidas-1;
+                }
+                else if(imagen1 !== 'none'){
+                    $('#vida1').css({'display':'none'});
+                    vidas = vidas-1;
+                }
+                if(vidas == 0){
+
+                }
+            } 
+            
+        </script>
         <script src="js/jquery-1.12.0.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        
+        <script src="js/bootstrap.min.js"></script>        
     </body>
 </html>

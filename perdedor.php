@@ -58,15 +58,12 @@ and open the template in the editor.
         <br>
          <br>
         <br>
-            <a href="usuarioOlvidado.php" target="_blank"><h1>Reintentar</h1></a>
+            <a href="Juego.php"><h1>Reintentar</h1></a>
             <br>
-            <a href="usuarioOlvidado.php" target="_blank"><h1>Elegir Modo</h1></a>
+            <a href="Menu.php"><h1>Elegir Modo</h1></a>
             <br>
-            <a href="usuarioOlvidado.php" target="_blank"><h1>Cerrar Juego</h1></a>
+            <a href="usuarioOlvidado.php"><h1>Cerrar Juego</h1></a>
         
         </div>
-        <?php
-        // put your code here
-        ?>
     </body>
 </html>
