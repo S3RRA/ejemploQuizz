@@ -13,22 +13,15 @@ and open the template in the editor.
         <link rel="icon" type="image/png" href="images/planeta.jpg">
         
         <style>
-            a{
-                color: white;
-            }
-            input{
-                color:black;
-                size:30;
-            }
-            #a{
- 
-                border-radius: 5px;
-                width: 600px;   
-            } 
-            #b{
-                
-                border-radius: 5px;
-                width: 400px;  
+            #div{
+                color: black;
+                position:absolute;
+                top:200px;
+                left:580px;
+                background-color: white;
+                border:solid;border-radius: 5px;
+                border-color: black;
+                width:15%;
             }
              body {
 
@@ -43,6 +36,9 @@ and open the template in the editor.
             } 
         </style>
     <body>
+        <div id="alert" class="alert alert-warning" role="alert">
+            ENHORABUENA, HAS GANADO ¿Te atreves con <a href="Menu.php">otro modo de juego?</a>
+        </div>
         <font size="3" color="white" face="Comic Sans MS,arial">
       
         <div align="center">
@@ -54,20 +50,14 @@ and open the template in the editor.
         <br>
          <br>
         <br>
-        <div align="center">
-             <br>
-        <br>
-         <br>
+        <div id="div" align="center">
             <br>
-            <a href="Juego.php" target="_blank"><h1>Continuar Jugando</h1></a>
-            <br>
-            <a href="Menu.php" target="_blank"><h1>Elegir Modo</h1></a>
-            <br>
-            <a href="Login.php" target="_blank"><h1>Cambia de usuario</h1></a>
-        
+            <button onclick="location.href='Juego.php'" class="btn btn-outline-info" target="_blank">Volver a jugar</button>
+            <br><br>
+            <button onclick="location.href='Menu.php'" class="btn btn-outline-info" target="_blank">Elegir modo de juego</button>
+            <br><br>
+            <button onclick="location.href='Login.php'" class="btn btn-outline-info" target="_blank">Salir</button>
+            <br><br>
         </div>
-        <?php
-        // put your code here
-        ?>
     </body>
 </html>

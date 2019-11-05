@@ -3,7 +3,6 @@
     <head>
         <meta charset="UTF-8">
         <title>Menú del juego</title>
-        <link rel="icon" type="image/png" href="images/planeta.jpg">
         <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link rel="icon" type="image/png" href="images/planeta.jpg">
         <style>
@@ -89,9 +88,9 @@
                 </select>
             </div>
         </div> 
-        <script>
+        <script>          
             function eligeTema(seleccion){
-                location.href="Juego.php?tema=" + seleccion;
+                location.href="Juego.php?tema=" + seleccion + "&puntuacion1=0&vidas=3";
             }
         </script>
         <div width="33%" class = "opcion2">
@@ -102,7 +101,7 @@
                 Este modo de juego es <b>solo para expertos</b> mezclando todos los temas que tenemos. <br> ¿Crees que tienes lo que hay que tener? <br> <b>¡DEMUESTRALO!</b>
             </p>
             <br><br<br>
-            <button id="boton3" onclick="location.href='Juego.php'">Iniciar</button>
+            <button id="boton3" onclick="location.href='Juego.php?puntuacion1=0&vidas=3'">Iniciar</button>
         </div> 
         <img id="logo" src="images/quizzplaneta.jpg" width="350px">
         <div class="opcion3">

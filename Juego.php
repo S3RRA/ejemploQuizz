@@ -46,11 +46,10 @@ and open the template in the editor.
                 background-repeat: no-repeat;
                 background-size: cover;
             }
-            #prueba{color:white;}
         </style>        
     </head>
     <body>
-        <?php
+        <?php       
             include('./funciones.php');
             $mysqli = conectaBBDD();
             
@@ -60,8 +59,7 @@ and open the template in the editor.
             } else {
                 $consulta = $mysqli -> query("SELECT * FROM preguntas;");
             }
-            
-            
+                       
             $num_filas = $consulta -> num_rows;
             $listaPreguntas = array();
             
@@ -84,23 +82,17 @@ and open the template in the editor.
             $r3 = rand(3,6); while ($r3 == $r1 || $r3 == $r2){$r3 = rand(3,6);}
             $r4 = rand(3,6); while ($r4 == $r1 || $r4 == $r2 || $r4 == $r3){$r4 = rand(3,6);}
             $resultado = $listaPreguntas[$preguntaElegida][7];
-         
-            
-        
+               
         ?>    
         <div id="alert" class="alert alert-warning" role="alert">
             Buena suerte!
         </div>
-        <div id="prueba">
-            <?php echo $resultado?>
-        </div>
-        <!--<button id="countdown" class="btn btn-info"></button>-->
         <div id="vidas">
             <img id="vida1" src="images/vida.png" width="30">
             <img id="vida2" src="images/vida.png" width='30'>
             <img id="vida3" src="images/vida.png" width='30'>
         </div>
-        <div id="puntos"><b>PUNTUACIÓN: 0</b></div>
+        <div id="puntos"><b>PUNTUACIÓN: <?php echo $_GET['puntuacion1'] ?></b></div>
         <img src='images/quizzplaneta.jpg' width='250' id="logo">
         <div id="quizz">
             <legend align="center">
@@ -133,51 +125,58 @@ and open the template in the editor.
             <br><br>
         </div>
         <script>
-            var puntuacion = 0;
-            
+            <?php
+                if(isset($_GET['vidas'])){
+                    $vidas = $_GET['vidas'];
+                }
+                
+                if(isset($_GET['puntuacion1'])){
+                    $puntuacion1 = $_GET['puntuacion1'];
+                }             
+            ?>
+            var puntuacion = '<?php echo $puntuacion1 ?>';
+            var vidas = '<?php echo $vidas?>';
             function chequea(opcion){
                 var correcta = '<?php echo $resultado;?>';
                 if(opcion == correcta){
-                    puntuacion = puntuacion + 100;
-                    document.getElementById("puntos").innerHTML = "<b>PUNTUACION: "+puntuacion+"</b>";
+                    puntuacion = +100;
+                    <?php $puntuacion1 += 100?>
+                    document.getElementById("puntos").innerHTML = "<b>PUNTUACION: +100</b>";
                     $('#'+opcion).removeClass('btn btn-info').addClass('btn btn-success');
                     document.title = "RESPUESTA CORRECTA!";
                     document.getElementById("alert").innerHTML = "¡RESPUESTA CORRECTA!";
                     $('#alert').removeClass('alert alert-warning').addClass('alert alert-success');
+                    if(puntuacion == 600){
+                        window.location.href="ganador.php";
+                    }
                     setTimeout(
                         function(){
-                            location.reload();
+                            window.location.href="Juego.php?tema=<?php echo $t?>&puntuacion1=<?php echo $puntuacion1?>&vidas=<?php echo $vidas?>";
                         },1000
-                    );                    
+                    );                 
                 } else {
+                    vidas = vidas-1;
+                    <?php $vidas = $vidas-1; ?>
                     $('#'+opcion).removeClass('btn btn-info').addClass('btn btn-danger');  
                     document.title = "RESPUESTA ERRÓNEA!";
                     document.getElementById("alert").innerHTML = "¡RESPUESTA ERRÓNEA!";
                     $('#alert').removeClass('alert alert-warning').addClass('alert alert-danger');
                     restaVidas();
                 }
-            }           
-            function restaVidas(){
-                var vidas = 3;
-                var imagen1 = $('#vida1').css('display');
-                var imagen2 = $('#vida2').css('display');
-                if(imagen1 == 'none' & imagen2 == 'none'){
-                    $('#vida3').css({'display':'none'});
-                    vidas = vidas-1;
-                }
-                else if(imagen1 == 'none'){
-                    $('#vida2').css({'display':'none'});
-                    vidas = vidas-1;
-                }
-                else if(imagen1 !== 'none'){
-                    $('#vida1').css({'display':'none'});
-                    vidas = vidas-1;
-                }
-                if(vidas == 0){
-
-                }
-            } 
+            }  
             
+            function restaVidas(){   
+                if(vidas == 0){
+                    $('#vida3').css({'display':'none'});
+                    window.location.href="perdedor.php";
+                }
+                else if(vidas == 1){
+                    $('#vida2').css({'display':'none'});
+                }
+                else if(vidas == 2){
+                    $('#vida1').css({'display':'none'});                 
+                }           
+            }      
         </script>
         <script src="js/jquery-1.12.0.min.js"></script>
         <script src="js/bootstrap.min.js"></script>        

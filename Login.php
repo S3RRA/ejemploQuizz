@@ -43,22 +43,26 @@
             <form method="post" action="datosLogin.php" id="casilla">
                 <legend>DATOS PERSONALES:</legend>
                 <br>
-                 <input type="text" width="43" name="user" required outofocus placeholder="Usuario">
+                 <input id="borrame" type="text" width="43" name="user" required outofocus placeholder="Usuario">
                 <br>
                 <br>
-                 <input type="password" width="40" name="pass" required autofocus placeholder="Contraseña">
+                 <input id="borrame" type="password" width="40" name="pass" required autofocus placeholder="Contraseña">
                 <br>
                 <br>
-                <input type="checkbox" name="Recordar"> Recordar usuario y contraseña
+                <input id="borrame" type="checkbox" name="Recordar"> Recordar usuario y contraseña
                 <br>
                 <br>
-                <input type="reset" id="boton2" class="btn btn-outline-warning">
-                <button type="submit" id="boton1" class="btn btn-outline-success">Enviar</button>
+                <input type="reset" id="boton2" class="btn btn-outline-warning" onclick="borra();">
+                <input type="button"  value="Enviar" id="boton1" class="btn btn-outline-success" onclick="location.href='Menu.php'">
  
             </form>
             <input type="button" id="boton3" value="Regístrate" class="btn btn-info" onClick="location.href='nuevoUsuario.php'">
         </div>
-  
+        <script>
+            function borra(){
+                getElementById('borrame').value="";
+            }
+        </script>
         <script src="js/jquery-ui.min.js" type="text/javascript"></script>
         <script src="js/bootstrap.min.js" type="text/javascript"></script> 
 

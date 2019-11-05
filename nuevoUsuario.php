@@ -59,6 +59,9 @@ and open the template in the editor.
         <title>Crear Usuario</title>
     </head>
     <body>
+        <div class="alert alert-warning" role="alert">
+            <b>¿Ya tienes una cuenta?</b> Por favor haz click <a href='Login.php'>aquí</a> para iniciar sesión.
+        </div>
         <font size="3" color="white" face="Comic Sans MS,arial">
       
         <div align="center">           
@@ -81,10 +84,15 @@ and open the template in the editor.
                     <br>
                 </div>  
                 <p id="butuones">            
-                    <input id="r" type="submit" name="enviar" value="Enviar" size="30" class="btn btn-success">
-                    <input id="r" type="reset" name="borrar" value="Borrar" size="30" class="btn btn-danger">
+                    <button id="r" name="enviar" value="Enviar" size="30" class="btn btn-success" onClick="location.href='Login.php'">Enviar</button>
+                    <button id="r" onClick="borra();" name="borrar" value="Borrar" size="30" class="btn btn-danger">Restablecer</button>
                 </p>
             </form>
-        </div>       
+        </div>  
+        <script>
+            function borra(){
+                getElementById('borrame').value="";
+            }
+        </script>
     </body>
 </html>
